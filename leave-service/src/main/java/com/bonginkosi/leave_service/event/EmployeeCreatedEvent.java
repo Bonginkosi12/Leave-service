@@ -1,3 +1,4 @@
+//This is the container(object) that holds the message received from Producer through RabbitMQ so that the consumer processes it
 package com.bonginkosi.leave_service.event;
 
 public class EmployeeCreatedEvent {
@@ -98,12 +99,5 @@ public class EmployeeCreatedEvent {
         this.department = department;
     }
 
-//    public Integer getEmployeeId() {
-//        return employeeId;
-//    }
-//
-//    public void setEmployeeId(Integer id) {
-//        this.employeeId = employeeId;
-//    }
 
 }
