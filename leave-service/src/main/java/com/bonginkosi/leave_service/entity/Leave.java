@@ -14,38 +14,38 @@ public class Leave {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "employee_id", nullable = false)
+    @Column(name = "employee_id")
     private Integer employeeId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "leave_type", nullable = false)
+    @Column(name = "leave_type")
     private LeaveType leaveType;
 
-    @Column(name = "start_date",nullable = false)
+    @Column(name = "start_date")
     private LocalDate startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     private LocalDate endDate;
 
     @Column(name = "reason", length = 500)
     private String reason;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private LeaveStatus status;
+    @Column(name = "leaveStatus")
+    private LeaveStatus leaveStatus;
 
 
     public Leave() {
     }
 
-    public Leave(Integer id, Integer employeeId, LeaveType leaveType, LocalDate startDate, LocalDate endDate, String reason, LeaveStatus status) {
+    public Leave(Integer id, Integer employeeId, LeaveType leaveType, LocalDate startDate, LocalDate endDate, String reason, LeaveStatus leaveStatus) {
         this.id = id;
         this.employeeId = employeeId;
         this.leaveType = leaveType;
         this.startDate = startDate;
         this.endDate = endDate;
         this.reason = reason;
-        this.status = status;
+        this.leaveStatus = leaveStatus;
     }
 
     //Getters and Setters
@@ -97,12 +97,12 @@ public class Leave {
         this.reason = reason;
     }
 
-    public LeaveStatus getStatus() {
-        return status;
+    public LeaveStatus getLeaveStatus() {
+        return  leaveStatus;
     }
 
-    public void setStatus(LeaveStatus status) {
-        this.status = status;
+    public void setLeaveStatus(LeaveStatus  leaveStatus) {
+        this.leaveStatus = leaveStatus ;
     }
 
 }

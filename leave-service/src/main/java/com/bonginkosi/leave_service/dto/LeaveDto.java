@@ -12,17 +12,17 @@ public class LeaveDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private String reason;
-    private LeaveStatus status;
+    private LeaveStatus leaveStatus;
 
     public LeaveDto() {}
-    public LeaveDto(Integer id, Integer employeeId, LeaveType leaveType, LocalDate startDate, LocalDate endDate, String reason, LeaveStatus status) {
+    public LeaveDto(Integer id, Integer employeeId, LeaveType leaveType, LocalDate startDate, LocalDate endDate, String reason, LeaveStatus leaveStatus) {
         this.id = id;
         this.employeeId = employeeId;
         this.leaveType = leaveType;
         this.startDate = startDate;
         this.endDate = endDate;
         this.reason = reason;
-        this.status = status;
+        this.leaveStatus = leaveStatus;
     }
 
     //Getters and Setters
@@ -68,11 +68,12 @@ public class LeaveDto {
         this.reason = reason;
     }
 
-    public LeaveStatus getStatus() {
-        return status;
+    public LeaveStatus getLeaveStatus() {
+        return  leaveStatus;
     }
-    public void setStatus(LeaveStatus status) {
-        this.status = status;
+
+    public void setLeaveStatus(LeaveStatus  leaveStatus) {
+        this.leaveStatus = leaveStatus ;
     }
 
 }
