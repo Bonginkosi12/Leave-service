@@ -1,12 +1,10 @@
 package com.bonginkosi.leave_service.controller;
 
 import com.bonginkosi.leave_service.dto.LeaveDto;
+import com.bonginkosi.leave_service.event.EmployeeCreatedEvent;
 import com.bonginkosi.leave_service.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employee_leave")
@@ -18,10 +16,10 @@ public class LeaveController {
         this.leaveService = leaveService;
     }
 
-    @PostMapping
-    public LeaveDto createLeave(@RequestBody LeaveDto leaveDto){
-        return leaveService.createLeave(leaveDto);
-
+    //PATCH Endpoint
+    @PatchMapping("/{id}")
+    public LeaveDto updateLeave(@PathVariable Integer id,@RequestBody LeaveDto leaveDto){
+        return leaveService.updateLeave(id, leaveDto);
     }
 
 

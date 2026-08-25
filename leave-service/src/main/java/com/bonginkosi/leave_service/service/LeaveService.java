@@ -30,6 +30,42 @@ public class LeaveService {
         leaveRepository.save(leave);
     }
 
+    //Method to update the leave record
+    public LeaveDto updateLeave(Integer id, LeaveDto leaveDto) {
+        Leave leave = leaveRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Leave record not found"));
+
+        if(leaveDto.getLeaveType() != null){
+            leave.setLeaveType(leaveDto.getLeaveType());
+        }
+
+        if(leaveDto.getLeaveStatus() != null){
+            leave.setLeaveStatus(leaveDto.getLeaveStatus());
+        }
+
+        if(leaveDto.getStartDate() != null){
+            leave.setStartDate(leaveDto.getStartDate());
+        }
+
+        if(leaveDto.getEndDate() != null){
+            leave.setEndDate(leaveDto.getEndDate());
+        }
+
+        if(leaveDto.getReason() != null){
+            leave.setReason(leaveDto.getReason());
+        }
+        leaveRepository.save(leave);
+
+        return new LeaveDto(
+            leave.getLeaveType(),
+            leave.getLeaveStatus(),
+            leave.getStartDate(),
+            leave.getEndDate(),
+            leave.getReason()
+        );
+
+    }
+
 
 
 
