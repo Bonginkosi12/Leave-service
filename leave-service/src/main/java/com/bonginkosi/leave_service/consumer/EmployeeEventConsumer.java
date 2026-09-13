@@ -1,48 +1,32 @@
+// Receives message from Producer through RabbitMQ
 package com.bonginkosi.leave_service.consumer;
 
 import com.bonginkosi.leave_service.event.EmployeeCreatedEvent;
+import com.bonginkosi.leave_service.service.LeaveService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeEventConsumer {
 
+    @Autowired
+    private final LeaveService leaveService;
+    public EmployeeEventConsumer(LeaveService leaveService) {
+        this.leaveService = leaveService;
+    }
+
+    private static final Logger log =
+            LoggerFactory.getLogger(EmployeeEventConsumer.class);
+
     @RabbitListener(queues = "leave.queue")
     public void consumeEmployeeCreated(EmployeeCreatedEvent event) {
 
-        System.out.println(
-                "Employee created: " + event.getId()
-        );
-
-        System.out.println(
-                "Employee name: " + event.getName()
-        );
-
-        System.out.println(
-                "Employee age: " + event.getAge()
-        );
-
-        System.out.println(
-                "Employee email: " + event.getEmail()
-        );
-        System.out.println(
-                "Employee mobileNumbers: " + event.getMobileNumbers()
-        );
-
-        System.out.println(
-                "Employee role: " + event.getRole()
-        );
-
-        System.out.println(
-                "Employee employmentType: " + event.getEmploymentType()
-        );
-
-        System.out.println(
-                "Employee department: " + event.getDepartment()
-        );
-
+        log.info("Received Employee Created Event: {}", event);
 
         // Create initial leave record here
-       //leaveService.createLeaveForEmployee(event);
+       leaveService. createLeave(event);
     }
 }
